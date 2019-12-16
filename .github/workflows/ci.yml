@@ -16,7 +16,6 @@ jobs:
     - run: |
         cd ./container
         ls -la
-    - shell: bash
     - name: Run docker image from build.sh
       run: |
         chmod +x build.sh
@@ -25,3 +24,4 @@ jobs:
       run: |
         docker login -p ${{ secrets.DOCKER_USER }} -u ${{ secrets.DOCKER_PASS }}
         docker push $GITHUB_REPOSITORY:$GITHUB_ACTION
+      shell: sh
