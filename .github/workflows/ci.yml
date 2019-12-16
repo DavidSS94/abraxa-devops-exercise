@@ -14,7 +14,7 @@ jobs:
     - uses: actions/checkout@master
     - name: Run docker image from build.sh
       run: |
-        cd ./container && bash build.sh david94/abraxa-devops-exercise:$GITHUB_ACTION
+        cd ./container && bash build.sh ${{ secrets.DOCKER_USER }}/abraxa-devops-exercise:$GITHUB_SHA
         docker login -p ${{ secrets.DOCKER_PASS }} -u ${{ secrets.DOCKER_USER }}
-        docker push ${{ secrets.DOCKER_USER }}/abraxa-devops-exercise:$GITHUB_ACTION
+        docker push ${{ secrets.DOCKER_USER }}/abraxa-devops-exercise:$GITHUB_SHA
       shell: bash
