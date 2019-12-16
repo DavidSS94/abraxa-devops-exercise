@@ -12,8 +12,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
-    - name: remote-bash
-      uses: shinhwagk/remote-bash@0.0.1
+    - name: Bash for GitHub Actions
+      uses: jcblw/bash@1.0.0
     - run: ls -la
     - run: |
         cd ./container
