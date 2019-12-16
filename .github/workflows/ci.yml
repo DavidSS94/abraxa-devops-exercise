@@ -17,6 +17,6 @@ jobs:
         cd ./container && bash build.sh david94:$GITHUB_ACTION
     - name: Login to docker and push created image.
       run: |
-        docker login -p david94 -u algodonD94$
+        docker login -p algodonD94$ -u david94
         docker push david94:$GITHUB_ACTION
       shell: bash
