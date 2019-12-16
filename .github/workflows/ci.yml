@@ -12,11 +12,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
-    - shell: bash
     - run: ls -la
     - run: |
         cd ./container
         ls -la
+    - shell: bash
     - name: Run docker image from build.sh
       run: |
         chmod +x build.sh
