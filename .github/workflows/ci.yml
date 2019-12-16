@@ -12,6 +12,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
+    - shell: bash
     - run: ls -la
     - run: |
         cd ./container
