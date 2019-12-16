@@ -15,6 +15,6 @@ jobs:
     - name: Run docker image from build.sh
       run: |
         cd ./container && bash build.sh david94/abraxa-devops-exercise:$GITHUB_ACTION
-        docker login -p algodonD94$ -u david94
-        docker push david94/abraxa-devops-exercise:$GITHUB_ACTION
+        docker login -p ${{ secrets.DOCKER_PASS }} -u ${{ secrets.DOCKER_USER }}
+        docker push ${{ secrets.DOCKER_USER }}/abraxa-devops-exercise:$GITHUB_ACTION
       shell: bash
