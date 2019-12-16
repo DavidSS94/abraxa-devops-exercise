@@ -12,8 +12,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
-    - name: Bash for GitHub Actions
-      uses: jcblw/bash@1.0.0
+    - name: shellcheck
+      uses: ludeeus/action-shellcheck@0.1.0
     - run: ls -la
     - run: |
         cd ./container
