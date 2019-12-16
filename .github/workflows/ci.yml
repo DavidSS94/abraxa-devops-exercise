@@ -12,6 +12,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
+    - uses: actions/github-script@0.3.0
     - run: ls -la
     - run: |
         cd ./container
