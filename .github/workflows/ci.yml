@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-    - run: pwd
+    - run: ls
     - run: cd container
     - name: Run docker image from build.sh
       run: ./build.sh $GITHUB_REPOSITORY:$GITHUB_ACTION
