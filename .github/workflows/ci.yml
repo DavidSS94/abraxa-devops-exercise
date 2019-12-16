@@ -1,0 +1,17 @@
+name: ci-devops-exercise
+
+on: [push]
+
+jobs:
+  build:
+    
+    runs-on: ubuntu-18.04
+
+    steps:
+    - run: cd container
+    - name: Run docker image from build.sh
+      run: ./build.sh $GITHUB_REPOSITORY:$GITHUB_ACTION
+    - name: Login to docker and push created image.
+      run: |
+        docker login -p ${{ secrets.DOCKER_USER }} -u ${{ secrets.DOCKER_PASS }}
+        docker push $GITHUB_REPOSITORY:$GITHUB_ACTION
