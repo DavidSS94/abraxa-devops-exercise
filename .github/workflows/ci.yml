@@ -1,6 +1,9 @@
 name: ci-devops-exercise
 
-on: [push]
+on:
+  push:
+    branches:
+    - develop
 
 jobs:
   build:
