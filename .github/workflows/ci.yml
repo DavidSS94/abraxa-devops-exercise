@@ -12,19 +12,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
-    - name: shellcheck
-      uses: ludeeus/action-shellcheck@0.1.0
-    - run: ls -la
-    - run: |
-        cd ./container
-        ls -la
     - name: Run docker image from build.sh
       run: |
-        tar --exclude ".git/" --exclude "node_modules/" -cvf app.tar ../
-        docker build -t david94:$GITHUB_ACTION .
-        rm -f app.tar 
+        cd ./container && bash build.sh $GITHUB_REPOSITORY:$GITHUB_ACTION
     - name: Login to docker and push created image.
       run: |
         docker login -p ${{ secrets.DOCKER_USER }} -u ${{ secrets.DOCKER_PASS }}
-        docker push david94:$GITHUB_ACTION
+        docker push $GITHUB_REPOSITORY:$GITHUB_ACTION
       shell: bash
