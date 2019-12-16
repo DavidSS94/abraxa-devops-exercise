@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1 
+metadata:
+  name: abraxa-devops-exercise 
+spec:
+  type: NodePort
+
+  selector:
+    app: devops-exercise 
+
+  ports:
+    - nodePort: 30500
+      port: 5000
+      targetPort: 5000
+
