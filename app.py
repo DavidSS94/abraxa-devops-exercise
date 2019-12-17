@@ -1,23 +1,26 @@
-from flask import request
-from flask import Flask, jsonify
 from multiprocessing import Value
+from flask import Flask, request
 
-counter = Value('i', 0)
+COUNTER = Value('i', 0)
 
-app = Flask(__name__)
+APP = Flask(__name__)
 
-@app.route("/", methods=['GET', 'POST'])
+
+@APP.route("/", methods=['GET', 'POST'])
 def hello():
     if request.method == 'GET':
-        return "Hello World!!!"
+        message = "Hello World!!!"
     if request.method == 'POST':
-        counter.value += 1
-        return "Hello World!!!"
+        COUNTER.value += 1
+        message = "Hello World!!!"
+    return message
 
-@app.route("/count")
+
+@APP.route("/count")
 def count():
-    return "Conteo de invocaciones: " + str(counter.value)
+    message = "Conteo de invocaciones: " + str(COUNTER.value)
+    return message
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    APP.run(debug=True, host='0.0.0.0', port=5000)
