@@ -16,8 +16,6 @@ jobs:
       - uses: actions/checkout@master
       - name: python-lint
         uses: CyberZHG/github-action-python-lint@0.0.2
-      - name: Verify python code
-        run: pylint app.py --disable="C0116,C0114"
       - name: Run docker image from build.sh
         run: |
           cd ./container && bash build.sh ${{secrets.DOCKER_USER}}/abraxa-devops-exercise:latest
