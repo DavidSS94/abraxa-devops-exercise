@@ -1,22 +1,31 @@
+---
+
 name: ci-devops-exercise
 
 on:
   push:
     branches:
-    - develop
+      - develop
 
 jobs:
+
   build:
-    
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@master
-    - name: Run docker image from build.sh
-      run: |
-        cd ./container && bash build.sh ${{ secrets.DOCKER_USER }}/abraxa-devops-exercise:$GITHUB_SHA
-        docker login -p ${{ secrets.DOCKER_PASS }} -u ${{ secrets.DOCKER_USER }}
-        docker push ${{ secrets.DOCKER_USER }}/abraxa-devops-exercise:$GITHUB_SHA
-    - name: Change placeholder to github_sha value
-      run: sed -i "s;%GITHUB_SHA%;$GITHUB_SHA;g" k8s/deployment.yml
-      shell: bash
+      - uses: actions/checkout@master
+      - name: Python Code Quality and Lint
+        uses: ricardochaves/python-lint@v1.0.0
+        with:
+          use-pylint: true
+      - name: Verify python code
+        run: pylint app.py --disable="C0116,C0114"
+      - name: Run docker image from build.sh
+        run: |
+          cd ./container && bash build.sh ${{secrets.DOCKER_USER}}/abraxa-devops-exercise:latest
+          docker login -p ${{secrets.DOCKER_PASS}} -u ${{secrets.DOCKER_USER}}
+          docker push ${{secrets.DOCKER_USER}}/abraxa-devops-exercise:latest
+      - name: Change placeholder to github_sha value
+        run: pylint app.py
+        # run: sed -i "s;%GITHUB_SHA%;$GITHUB_SHA;g" k8s/deployment.yml
+        shell: bash
