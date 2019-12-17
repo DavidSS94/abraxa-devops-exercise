@@ -17,4 +17,6 @@ jobs:
         cd ./container && bash build.sh ${{ secrets.DOCKER_USER }}/abraxa-devops-exercise:$GITHUB_SHA
         docker login -p ${{ secrets.DOCKER_PASS }} -u ${{ secrets.DOCKER_USER }}
         docker push ${{ secrets.DOCKER_USER }}/abraxa-devops-exercise:$GITHUB_SHA
+    - name: Change placeholder to github_sha value
+      run: sed -i "s;%GITHUB_SHA%;$GITHUB_SHA;g" k8s/deployment.yml
       shell: bash
