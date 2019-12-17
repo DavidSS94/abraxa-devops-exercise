@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,7 +16,7 @@ spec:
         app: devops-exercise
     spec:
       containers:
-      - name: devops-exercise
-        image: david94/abraxa-devops-exercise:%GITHUB_SHA%
-        ports:
+        - name: devops-exercise
+          image: david94/abraxa-devops-exercise:latest
+      ports:
         - containerPort: 5000
