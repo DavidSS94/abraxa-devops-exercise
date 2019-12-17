@@ -14,10 +14,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-      - name: Python Code Quality and Lint
-        uses: ricardochaves/python-lint@v1.0.0
-        with:
-          use-pylint: true
+      - name: python-lint
+        uses: CyberZHG/github-action-python-lint@0.0.2
       - name: Verify python code
         run: pylint app.py --disable="C0116,C0114"
       - name: Run docker image from build.sh
